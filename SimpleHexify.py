@@ -66,23 +66,17 @@ class SimpleHexifyCommand(sublime_plugin.TextCommand):
 			# row numbers
 			record = ("%s" % (format(cnt, "02x"))).zfill(11)
 			print(record)
-			# hexs
 			record = record + "\t" + " ".join("{:02x}".format(x) for x in content)
-			print(record)
 			# fill spaces when the length is shorter than 16
 			if len(content) < HEX:
 				record = record + "   " * (HEX - len(content))
-			print(record)
 			# visible ascii characters
 			record = record + "\t" + "".join([self.getAscii(x) for x in content])
-			print(record)
 			# fill spaces when the length is short than 16
 			if len(content) < HEX:
 				record = record + " " * (HEX - len(content))
-			print(record)
 			# bits
 			record = record + "\t" + " ".join("{:08b}".format(x) for x in content)
-			print(record)
 			print(record, file = self.outFile)
 
 			cnt = cnt + 1
